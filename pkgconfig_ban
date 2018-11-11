@@ -1,0 +1,4 @@
+# This file contains pkgconfig build requirements that get picked up
+# but are undesirable. One entry per line, no whitespace.
+glib-sharp-2.0
+gapi-2.0
