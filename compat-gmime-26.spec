@@ -4,7 +4,7 @@
 #
 Name     : compat-gmime-26
 Version  : 2.6.23
-Release  : 1
+Release  : 2
 URL      : https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
 Source0  : https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
 Summary  : MIME library
@@ -26,14 +26,6 @@ BuildRequires : vala
 GMime is a set of utilities for parsing and creating messages using
 the Multipurpose Internet Mail Extension (MIME)
 
-%package abi
-Summary: abi components for the compat-gmime-26 package.
-Group: Default
-
-%description abi
-abi components for the compat-gmime-26 package.
-
-
 %package data
 Summary: data components for the compat-gmime-26 package.
 Group: Data
@@ -48,6 +40,7 @@ Group: Development
 Requires: compat-gmime-26-lib = %{version}-%{release}
 Requires: compat-gmime-26-data = %{version}-%{release}
 Provides: compat-gmime-26-devel = %{version}-%{release}
+Requires: compat-gmime-26 = %{version}-%{release}
 
 %description dev
 dev components for the compat-gmime-26 package.
@@ -86,20 +79,25 @@ license components for the compat-gmime-26 package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1541971663
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1564857284
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1541971663
+export SOURCE_DATE_EPOCH=1564857284
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/compat-gmime-26
 cp COPYING %{buildroot}/usr/share/package-licenses/compat-gmime-26/COPYING
@@ -108,14 +106,12 @@ cp COPYING %{buildroot}/usr/share/package-licenses/compat-gmime-26/COPYING
 %files
 %defattr(-,root,root,-)
 
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libgmime-2.6.so.0.623.0.abi
-
 %files data
 %defattr(-,root,root,-)
 /usr/lib64/girepository-1.0/GMime-2.6.typelib
 /usr/share/gir-1.0/*.gir
+/usr/share/vala/vapi/gmime-2.6.deps
+/usr/share/vala/vapi/gmime-2.6.vapi
 
 %files dev
 %defattr(-,root,root,-)
