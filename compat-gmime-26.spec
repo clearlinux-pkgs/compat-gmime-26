@@ -4,7 +4,7 @@
 #
 Name     : compat-gmime-26
 Version  : 2.6.23
-Release  : 2
+Release  : 3
 URL      : https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
 Source0  : https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
 Summary  : MIME library
@@ -21,6 +21,8 @@ BuildRequires : libgpg-error-dev
 BuildRequires : libxslt-bin
 BuildRequires : pkgconfig(zlib)
 BuildRequires : vala
+# Suppress generation of debuginfo
+%global debug_package %{nil}
 
 %description
 GMime is a set of utilities for parsing and creating messages using
@@ -80,7 +82,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564857284
+export SOURCE_DATE_EPOCH=1567808982
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -97,7 +99,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1564857284
+export SOURCE_DATE_EPOCH=1567808982
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/compat-gmime-26
 cp COPYING %{buildroot}/usr/share/package-licenses/compat-gmime-26/COPYING
