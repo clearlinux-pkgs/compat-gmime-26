@@ -4,7 +4,7 @@
 #
 Name     : compat-gmime-26
 Version  : 2.6.23
-Release  : 3
+Release  : 4
 URL      : https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
 Source0  : https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
 Summary  : MIME library
