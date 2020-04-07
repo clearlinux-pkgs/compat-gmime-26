@@ -4,7 +4,7 @@
 #
 Name     : compat-gmime-26
 Version  : 2.6.23
-Release  : 4
+Release  : 5
 URL      : https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
 Source0  : https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz
 Summary  : MIME library
@@ -14,13 +14,13 @@ Requires: compat-gmime-26-data = %{version}-%{release}
 Requires: compat-gmime-26-lib = %{version}-%{release}
 Requires: compat-gmime-26-license = %{version}-%{release}
 BuildRequires : buildreq-gnome
+BuildRequires : docbook-utils
 BuildRequires : docbook-xml
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : libgpg-error-dev
 BuildRequires : libxslt-bin
 BuildRequires : pkgconfig(zlib)
-BuildRequires : vala
 # Suppress generation of debuginfo
 %global debug_package %{nil}
 
@@ -76,17 +76,18 @@ license components for the compat-gmime-26 package.
 
 %prep
 %setup -q -n gmime-2.6.23
+cd %{_builddir}/gmime-2.6.23
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1567808982
+export SOURCE_DATE_EPOCH=1586223413
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -99,10 +100,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1567808982
+export SOURCE_DATE_EPOCH=1586223413
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/compat-gmime-26
-cp COPYING %{buildroot}/usr/share/package-licenses/compat-gmime-26/COPYING
+cp %{_builddir}/gmime-2.6.23/COPYING %{buildroot}/usr/share/package-licenses/compat-gmime-26/caeb68c46fa36651acf592771d09de7937926bb3
 %make_install
 
 %files
@@ -270,4 +271,4 @@ cp COPYING %{buildroot}/usr/share/package-licenses/compat-gmime-26/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/compat-gmime-26/COPYING
+/usr/share/package-licenses/compat-gmime-26/caeb68c46fa36651acf592771d09de7937926bb3

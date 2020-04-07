@@ -3,7 +3,6 @@ Configure miss: winsock2.h usability
 Configure miss: winsock2.h presence
 Configure miss: gmtime_s
 Configure miss: db2html
-Configure miss: docbook2html
 Configure miss: getaddrinfo in -lsocket
 Configure miss: gpgme-config
 Configure miss: GPGME pthread - version >= 1.1.6
